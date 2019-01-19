@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class KochGenerator : MonoBehaviour {
     protected enum _axis
     {
@@ -13,7 +14,7 @@ public class KochGenerator : MonoBehaviour {
     [SerializeField]
     protected _axis axis = new _axis();
 
-    protected enum _initititor
+    public enum _initititor
     {
         Triangle,
         Square,
@@ -32,12 +33,35 @@ public class KochGenerator : MonoBehaviour {
         public float Length { get; set; }
     }
 
+    //Struct for holding a set of parameters for Fractal generation
+    public struct FractalParams
+    {
+        public _initititor initShape;
+        public StartGen[] gens;
+    }
+
     [SerializeField]
-    protected _initititor intititor = new _initititor();
+    public _initititor initititor = new _initititor();
 
     [SerializeField]
     protected AnimationCurve _generator;
+
+    [System.Serializable]
+    public struct StartGen
+    {
+        public bool outwards;
+        public float scale;
+    }
+
+    public StartGen[] _startGen;
+
     protected Keyframe[] _keys;
+
+    [SerializeField]
+    protected bool _useBezierCurves;
+    [SerializeField]
+    [Range(8,24)]
+    protected int _bezierVertexCount;
 
     protected int _generationCount;
 
@@ -52,17 +76,23 @@ public class KochGenerator : MonoBehaviour {
 
     protected Vector3[] _position;
     protected Vector3[] _targetPosition;
+    protected Vector3[] _bezierPosition;
     private List<LineSegment> _lineSegment;
 
-    private void Awake()
+    public void UpdateFractal()
     {
+        //Setup parameters
+        //initititor = fractalparams.initShape;
+        //_startGen = fractalparams.gens;
+
+        Debug.Log("Updating fractral Pattern");
+
         GetIntiatorPoints();
         //Assign Lists & Arrays
-        _position = new Vector3[_initiatorPointAmount+1];
+        _position = new Vector3[_initiatorPointAmount + 1];
         _targetPosition = new Vector3[_initiatorPointAmount + 1];
         _lineSegment = new List<LineSegment>();
         _keys = _generator.keys;
-
         _rotateVector = Quaternion.AngleAxis(360 / _initiatorPointAmount, _rotateAxis) * _rotateVector;
         //Fills the array with the points of the object, updating rotation per point
         for (int i = 0; i < _initiatorPointAmount; i++)
@@ -72,6 +102,59 @@ public class KochGenerator : MonoBehaviour {
         }
         _position[_initiatorPointAmount] = _position[0];
         _targetPosition = _position;
+
+        //For Each stuct do the generation
+        for (int i = 0; i < _startGen.Length; i++)
+        {
+            KochGenerate(_targetPosition, _startGen[i].outwards, _startGen[i].scale);
+        }
+    }
+
+    protected Vector3[] BezierCurve(Vector3[] points, int vertexCount)
+    {
+        List<Vector3> pointList = new List<Vector3>();
+        //Making a bezier curve between the polygon's points
+        for(int i= 0;i< points.Length; i+=2)
+        {
+            if(i+2 <= points.Length -1)
+            {
+                for(float ratio = 0f; ratio <= 1; ratio += 1.0f / vertexCount)
+                {
+                    Vector3 tangentLineVertex1 = Vector3.Lerp(points[i], points[i + 1], ratio);
+                    Vector3 tangentLineVertex2 = Vector3.Lerp(points[i + 1], points[i + 2], ratio);
+                    Vector3 bezierPoint = Vector3.Lerp(tangentLineVertex1, tangentLineVertex2, ratio);
+                    pointList.Add(bezierPoint);
+                }
+            }
+        }
+        return pointList.ToArray();
+    }
+
+    private void Awake()
+    {
+        UpdateFractal();
+        //GetIntiatorPoints();
+        ////Assign Lists & Arrays
+        //_position = new Vector3[_initiatorPointAmount+1];
+        //_targetPosition = new Vector3[_initiatorPointAmount + 1];
+        //_lineSegment = new List<LineSegment>();
+        //_keys = _generator.keys;
+
+        //_rotateVector = Quaternion.AngleAxis(360 / _initiatorPointAmount, _rotateAxis) * _rotateVector;
+        ////Fills the array with the points of the object, updating rotation per point
+        //for (int i = 0; i < _initiatorPointAmount; i++)
+        //{
+        //    _position[i] = _rotateVector * _initiatorSize;
+        //    _rotateVector = Quaternion.AngleAxis(360 / _initiatorPointAmount, _rotateAxis) * _rotateVector;
+        //}
+        //_position[_initiatorPointAmount] = _position[0];
+        //_targetPosition = _position;
+
+        ////For Each stuct do the generation
+        //for (int i = 0; i < _startGen.Length; i++)
+        //{
+        //    KochGenerate(_targetPosition, _startGen[i].outwards, _startGen[i].scale);
+        //}
     }
 
     protected void KochGenerate(Vector3[] positions, bool outwards, float generatorMultiplier)
@@ -107,7 +190,6 @@ public class KochGenerator : MonoBehaviour {
             //iterates through all keys on the line
             for(int j = 1; j<_keys.Length -1; j++)
             {
-                
                 float moveAmount = _lineSegment[i].Length * _keys[j].time;
                 float heightAmount = (_lineSegment[i].Length * _keys[j].value * generatorMultiplier);
                 Vector3 movePos = _lineSegment[i].StartPostion + (_lineSegment[i].Direction * moveAmount);
@@ -132,6 +214,7 @@ public class KochGenerator : MonoBehaviour {
         _targetPosition = new Vector3[targetPos.Count];
         _position = newPos.ToArray();
         _targetPosition = targetPos.ToArray();
+        _bezierPosition = BezierCurve(_targetPosition, _bezierVertexCount);
 
         _generationCount++;
     }
@@ -170,7 +253,7 @@ public class KochGenerator : MonoBehaviour {
 
     private void GetIntiatorPoints()
     {
-        switch(intititor)
+        switch(initititor)
         {
             case _initititor.Triangle:
                 _initiatorPointAmount = 3;
