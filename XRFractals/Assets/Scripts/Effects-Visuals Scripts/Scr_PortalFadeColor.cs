@@ -33,12 +33,17 @@ public class Scr_PortalFadeColor : MonoBehaviour {
         {
             StartCoroutine(StartFade());
         }
+
+        if (Input.GetKeyDown(KeyCode.A)) StartRunningPortalParticle();
+        if (Input.GetKeyDown(KeyCode.S)) StopRunningPortalParticle();
     }
 
 
     public void StartRunningPortalParticle()
     {
         loopFade = true;
+        edgeParticle.Play();
+        centerParticle.Play();
     }
 
     //call this function this when you want the particle to stop
