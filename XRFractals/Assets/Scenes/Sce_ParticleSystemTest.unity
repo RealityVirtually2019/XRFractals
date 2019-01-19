@@ -4772,7 +4772,7 @@ MonoBehaviour:
   edgeParticle: {fileID: 761326111}
   centerParticle: {fileID: 1465994567}
   loopFade: 1
-  loopTime: 4
+  loopTime: 3.9
   originalParticleEdgeColor: {r: 0, g: 0, b: 0, a: 0}
   originalParticleCenterColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &492083391
