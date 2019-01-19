@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 115640458}
   - component: {fileID: 115640457}
+  - component: {fileID: 115640459}
   m_Layer: 0
   m_Name: KochLine
   m_TagString: Untagged
@@ -135,7 +136,7 @@ LineRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 115640456}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -144,7 +145,7 @@ LineRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 381f008e4c6427343ad2b8fe38773033, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -169,7 +170,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -219,8 +220,8 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_UseWorldSpace: 1
-  m_Loop: 0
+  m_UseWorldSpace: 0
+  m_Loop: 1
 --- !u!4 &115640458
 Transform:
   m_ObjectHideFlags: 0
@@ -228,12 +229,79 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 115640456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115640459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 115640456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6704392c8cb5bc449e0acc6ef20d26c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axis: 2
+  intititor: 0
+  _generator:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0023269653
+      inSlope: 0.46379012
+      outSlope: 0.46379012
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23416719
+      value: 0.1109314
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.47084045
+      value: 0.234375
+      inSlope: 0.003349198
+      outSlope: 0.003349198
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.8266718
+      value: 0.3046875
+      inSlope: 0.00965343
+      outSlope: 0.00965343
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.5465687
+    - serializedVersion: 3
+      time: 1
+      value: 0.0023269653
+      inSlope: -1.7444391
+      outSlope: -1.7444391
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _initiatorSize: 3
+  _lerpAmount: 0.303
+  _generateMultiplier: 1
 --- !u!1 &609941196
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &623643627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,22 +406,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3326d6de7bd77c74ab25d4a231f2b0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 0
-  intititor: 1
-  _initiatorSize: 2.98
+  axis: 2
+  intititor: 5
+  _generator:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _initiatorSize: 3
 --- !u!4 &623643628
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 623643626}
-  m_LocalRotation: {x: -0.0052132863, y: -0.03994035, z: 0.7579316, w: 0.6510894}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -183.081, y: -543.44, z: -1521.4199}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145990829
 GameObject:
   m_ObjectHideFlags: 0
