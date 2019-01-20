@@ -15,6 +15,7 @@ public class KochLine : KochGenerator {
     public AudioPeer _audioPeer;
     public int _audioBand;
     private AudioPeer masterAudioPeer;
+    public AudioMixerSnapshot currentFractalSnapshot;
 
 	// Use this for initialization
 	void Start () {
@@ -93,6 +94,15 @@ public class KochLine : KochGenerator {
             _startGen[i].scale = Random.Range(1,8);
         }
         updateLine();
+         if (myValue == 0.0) {
+            colliderGroup.audioMixer.SetFloat("GrainVolume", 0.0f);
+
+
+        }
+        
+
+          colliderGroup.audioMixer.SetFloat("GrainPitch", newPitch);
+
 
     }
 
@@ -101,6 +111,28 @@ public class KochLine : KochGenerator {
         _initiatorSize = (10* newSizeValue);
         Debug.Log("Size Changing to : " + _initiatorSize);
         updateLine();
+        if (newSizeValue == 0.0) {
+            colliderGroup.audioMixer.SetFloat("BassVolume", 0.0f);
+
+
+        }
+
+            if (newSizeValue > .7) {
+
+
+        colliderGroup.audioMixer.SetFloat("BassPitch", 1.24f);
+
+        } else if (newSizeValue > .4) {
+        colliderGroup.audioMixer.SetFloat("BassPitch", 1.12f);
+
+
+
+        }else {
+
+
+                    colliderGroup.audioMixer.SetFloat("BassPitch", 1.0f);
+
+        }
 
     }
 
@@ -110,6 +142,28 @@ public class KochLine : KochGenerator {
         Debug.Log("Lerp Changing to : " + _lerpAmount);
         updateLine();
 
+         if (newLerpValue == 0.0) {
+            colliderGroup.audioMixer.SetFloat("SynthVolume", 0.0f);
+
+
+        }
+               if (newLerpValue > .7) {
+
+
+                    colliderGroup.audioMixer.SetFloat("SynthPitch", 1.0f);
+
+        } else if (newLerpValue > .4) {
+        colliderGroup.audioMixer.SetFloat("SynthPitch", 1.12f);
+
+
+
+        }else {
+
+        colliderGroup.audioMixer.SetFloat("SynthPitch", 1.24f);
+
+
+        }
+
     }
 
       public void SliderGenerateMultiplierChange(float newMultiplierValue)
@@ -118,5 +172,16 @@ public class KochLine : KochGenerator {
            _useBezierCurves = Random.value > 0.5f;
            Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
            updateLine();
+           float newPitch = Convert.ToSingle(UnityEngine.Random.Range(3,20) * 0.1);
+ if (newMultiplierValue == 0.0) {
+            colliderGroup.audioMixer.SetFloat("ArpVolume", 0.0f);
+
+
+        }
+
+                 if (newMultiplierValue >.5) {
+        colliderGroup.audioMixer.SetFloat("ArpVolume", 1.0f);
+
+    }
       }
 }
