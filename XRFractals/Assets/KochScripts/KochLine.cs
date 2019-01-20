@@ -14,6 +14,7 @@ public class KochLine : KochGenerator {
     [Header("Audio")]
     public AudioPeer _audioPeer;
     public int _audioBand;
+    private AudioPeer masterAudioPeer;
 
 	// Use this for initialization
 	void Start () {
@@ -23,6 +24,7 @@ public class KochLine : KochGenerator {
         _lineRenderer.loop = true;
         _lineRenderer.startWidth = 0.05f;
         _lineRenderer.endWidth = 0.05f;
+        //masterAudioPeer = 
 
     }
 
@@ -45,7 +47,9 @@ public class KochLine : KochGenerator {
             {
                 //OLD Call adding audio now
                 //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _lerpAmount);
-                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _audioPeer._audioBandBuffer[_audioBand]);
+                //Debug.Log(_audioPeer._audioBandBuffer[0]);
+                //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _audioPeer._audioBandBuffer[_audioBand]);
+                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], 1.0f);
             }
             if (_useBezierCurves)
             {
@@ -72,6 +76,8 @@ public class KochLine : KochGenerator {
     }
  public void SliderStartGenChange(float myValue)
     {
+
+        Debug.Log("HELLO!!!!!");
 
         _startGen = new StartGen[Random.Range(1,5)];
 

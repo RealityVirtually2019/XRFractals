@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
 
 namespace UnityEngine.XR.iOS
 {
@@ -10,14 +12,25 @@ namespace UnityEngine.XR.iOS
 		public LayerMask collisionLayer = 1 << 10;  //ARKitPlane layer
 		private Animator animation;
 
+
+        public AudioMixerSnapshot fractalSnapshot;
+
+
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
             if (hitResults.Count > 0) {
                 foreach (var hitResult in hitResults) {
                     Debug.Log ("Got hit!");
+
+                    fractalSnapshot.TransitionTo(5);
+
                     m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);
+
+                    if (gameObject.tag == "Portal") animation.Play("portal_open_anim", 0, 0.0f);
+                    else if (gameObject.tag == "Fractal") animation.Play("frac_show_anim", 0, 0.0f);
+
                     Debug.Log (string.Format ("x:{0:0.######} y:{1:0.######} z:{2:0.######}", m_HitTransform.position.x, m_HitTransform.position.y, m_HitTransform.position.z));
                     return true;
                 }
@@ -45,6 +58,8 @@ namespace UnityEngine.XR.iOS
 
 					//and the rotation from the transform of the plane collider
 					m_HitTransform.rotation = hit.transform.rotation;
+
+                    fractalSnapshot.TransitionTo(5);
                 }
 			}
 
@@ -75,7 +90,6 @@ namespace UnityEngine.XR.iOS
                     {
                         if (HitTestWithResultType (point, resultType))
                         {
-			
                              if (gameObject.tag == "Portal") animation.Play ("portal_open_anim",0,0.0f);
 							 else  if (gameObject.tag == "Fractal") animation.Play ("frac_show_anim",0,0.0f);
                                
