@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4877997683570326}
   m_Layer: 0
-  m_Name: Octahedron
+  m_Name: Octahedron Fractal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
