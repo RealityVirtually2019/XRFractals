@@ -12,8 +12,12 @@ public class sliderManager : MonoBehaviour {
     public Text propertyUIText;
 
 	void Start () {
-		
-	}
+        for (int i = 0; i < propertyNames.Length; i++)
+        {
+            sliders[i].SetActive(false);
+        }
+        sliders[0].SetActive(true);
+    }
 	
 	void Update () {
        

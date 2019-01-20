@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: rv19
-  productName: d5v1
+  companyName: Fractalize
+  productName: ARFractals
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -153,7 +153,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Standalone: com.rv19.d4v1
-    iOS: com.rv19.d5v1
+    iOS: com.Fractalize.ARFractals
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -311,7 +311,7 @@ PlayerSettings:
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
   enableCrashReportAPI: 0
-  cameraUsageDescription: Can I use your camera?
+  cameraUsageDescription: Can I use your camera for some fun stuff?
   locationUsageDescription: Can I use your location data?
   microphoneUsageDescription: Can I use your microphone?
   switchNetLibKey: 

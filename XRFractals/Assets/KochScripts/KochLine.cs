@@ -20,7 +20,7 @@ public class KochLine : KochGenerator {
     private int GenNumb;
 
     public AudioMixerSnapshot currentFractalSnapshot;
-    public AudioMixerGroup colliderGroup;
+    //public AudioMixerGroup colliderGroup;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +28,8 @@ public class KochLine : KochGenerator {
         _lineRenderer.enabled = true;
         _lineRenderer.useWorldSpace = false;
         _lineRenderer.loop = true;
-        _lineRenderer.startWidth = 0.05f;
-        _lineRenderer.endWidth = 0.05f;
+        _lineRenderer.startWidth = 0.02f;
+        _lineRenderer.endWidth = 0.02f;
         //masterAudioPeer = 
 
     }
@@ -110,11 +110,28 @@ public class KochLine : KochGenerator {
         }
         updateLine();
 
-         if (myValue == 0.0) {
+        /*
+        //AudioMixerGroup[] m_colliderGroup = FindObjectsOfType<AudioMixerGroup>();
+        //AudioMixerGroup currcolliderGroup;
+
+        //foreach (AudioMixerGroup mixerGroup in m_colliderGroup)
+        //{
+        //    if(mixerGroup.name == "Synth Tone")
+        //    {
+        //        currcolliderGroup = mixerGroup;
+        //    }
+
+        //}
+
+
+        if (myValue == 0.0)
+        {
             colliderGroup.audioMixer.SetFloat("GrainVolume", 0.0f);
 
 
-        } else {
+        }
+        else
+        {
             colliderGroup.audioMixer.SetFloat("GrainVolume", 1.0f);
 
         }
@@ -122,15 +139,23 @@ public class KochLine : KochGenerator {
 
 
         colliderGroup.audioMixer.SetFloat("GrainPitch", newPitch);
-
+        */
 
     }
 
     public void SliderSizeChange(float newSizeValue)
     {        
+
+
+        if (newSizeValue > 0.5) {
+            currentFractalSnapshot.TransitionTo(5);
+        
+        }
         _initiatorSize = (10* newSizeValue);
         Debug.Log("Size Changing to : " + _initiatorSize);
         updateLine();
+
+        /*
         if (newSizeValue == 0.0) {
             colliderGroup.audioMixer.SetFloat("BassVolume", 0.0f);
 
@@ -158,7 +183,7 @@ public class KochLine : KochGenerator {
                     colliderGroup.audioMixer.SetFloat("BassPitch", 1.0f);
 
         }
-
+        */
 
     }
 
@@ -175,6 +200,7 @@ public class KochLine : KochGenerator {
 
         updateLine();
 
+        /*
          if (newLerpValue == 0.0) {
             colliderGroup.audioMixer.SetFloat("SynthVolume", 0.0f);
 
@@ -199,19 +225,22 @@ public class KochLine : KochGenerator {
         }else {
 
         colliderGroup.audioMixer.SetFloat("SynthPitch", 1.24f);
-
+       
 
         }
+         */
 
     }
 
-      public void SliderGenerateMultiplierChange(float newMultiplierValue)
+
+    public void SliderGenerateMultiplierChange(float newMultiplierValue)
       {     
            //UnityEngine.Random boolean value
            _useBezierCurves = UnityEngine.Random.value > 0.5f;
            Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
            updateLine();
 
+    /*
 if (newMultiplierValue == 0.0) {
             colliderGroup.audioMixer.SetFloat("ArpVolume", 0.0f);
 
@@ -222,5 +251,8 @@ if (newMultiplierValue == 0.0) {
         colliderGroup.audioMixer.SetFloat("ArpVolume", 1.0f);
 
     }
+
+    */
       }
 }
+
