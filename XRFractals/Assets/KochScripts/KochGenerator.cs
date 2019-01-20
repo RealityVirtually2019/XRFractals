@@ -93,7 +93,7 @@ public class KochGenerator : MonoBehaviour {
         _targetPosition = new Vector3[_initiatorPointAmount + 1];
         _lineSegment = new List<LineSegment>();
         _keys = _generator.keys;
-        _rotateVector = Quaternion.AngleAxis(360 / _initiatorPointAmount, _rotateAxis) * _rotateVector;
+        _rotateVector = Quaternion.AngleAxis(_initalRotation , _rotateAxis) * _rotateVector;
         //Fills the array with the points of the object, updating rotation per point
         for (int i = 0; i < _initiatorPointAmount; i++)
         {
