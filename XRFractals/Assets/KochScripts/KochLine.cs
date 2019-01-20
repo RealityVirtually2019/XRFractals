@@ -51,10 +51,10 @@ public class KochLine : KochGenerator {
             for (int i = 0; i < _position.Length; i++)
             {
                 //OLD Call adding audio now
-                //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _lerpAmount);
+                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _lerpAmount);
                 //Debug.Log(_audioPeer._audioBandBuffer[0]);
                 //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _audioPeer._audioBandBuffer[_audioBand]);
-                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], 1.0f);
+                //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], 1.0f);
             }
             if (_useBezierCurves)
             {
@@ -84,18 +84,27 @@ public class KochLine : KochGenerator {
 
         Debug.Log("HELLO!!!!!");
 
-        _startGen = new StartGen[UnityEngine.Random.Range(1,5)];
+        //_startGen = new StartGen[Random.Range(1,5)];
+        _startGen = new StartGen[(int)myValue];
 
-         for (int i = 0; i < _startGen.Length; i++)
+        for (int i = 0; i < _startGen.Length; i++)
         {
             // TODO : Is there a more efficient way to do this? 
             _startGen[i] = new StartGen();
             // UnityEngine.Random boolean value via 
             //https://gamedev.stackexchange.com/questions/110332/is-there-a-random-command-for-boolean-variables-in-unity-c
             Debug.Log(UnityEngine.Random.value > 0.5f);
-            _startGen[i].outwards = (UnityEngine.Random.value > 0.5f);
-;
-            _startGen[i].scale = UnityEngine.Random.Range(1,8);
+
+            
+            //_startGen[i].scale = Random.Range(1,8);
+            if (i != _startGen.Length)
+            {
+                _startGen[i].scale = 1;
+            }
+            else
+            {
+                _startGen[i].scale = _lerpAmount;
+            }
         }
         updateLine();
 
