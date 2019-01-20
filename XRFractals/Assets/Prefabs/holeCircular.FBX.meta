@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 5824f9ff0c0004d369a89be2e4634f0d
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Camera
     100002: Directional Light
@@ -26,7 +26,7 @@ ModelImporter:
     4300002: hole_top
     4300004: hole_edge
     4300006: innerbox
-    7400000: Take 001
+    7400000: portal_open_anim
     9500000: //RootNode
     10800000: Directional Light
     13700000: hole_edge
@@ -61,7 +61,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: portal_open_anim
       takeName: Take 001
       firstFrame: 0
       lastFrame: 30
@@ -111,6 +111,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.02
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -130,7 +132,6 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

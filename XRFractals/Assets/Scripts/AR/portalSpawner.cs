@@ -29,8 +29,8 @@ namespace UnityEngine.XR.iOS
 
                     // spawn Fractal
                     GameObject newFractal = Instantiate(fractalPrefab);
-                    newFractal.transform.position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
-                    newFractal.transform.rotation = UnityARMatrixOps.GetRotation(hitResult.worldTransform);
+                    newFractal.transform.position = newPortal.transform.position;
+                    newFractal.transform.rotation = newPortal.transform.rotation;
 
                     fractalAnim = newFractal.GetComponent<Animator>();
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class sceneManager : MonoBehaviour {
 
-	
+    public Transform ARParent;
 	void Start () {
 		
 	}
@@ -15,4 +15,9 @@ public class sceneManager : MonoBehaviour {
 
 
 	}
+
+    public void reset()
+    {
+        ARParent.position = new Vector3(ARParent.position.x, 1000f, ARParent.position.z);
+    }
 }

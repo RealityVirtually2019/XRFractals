@@ -45,7 +45,7 @@ namespace UnityEngine.XR.iOS
 
 					//and the rotation from the transform of the plane collider
 					m_HitTransform.rotation = hit.transform.rotation;
-				}
+                }
 			}
 
 #else
@@ -75,9 +75,9 @@ namespace UnityEngine.XR.iOS
                     {
                         if (HitTestWithResultType (point, resultType))
                         {
-							
-                             if (gameObject.name == "holeCircular") animation.Play ("Take 001",0,0.0f);
-							 else  animation.Play ("octafresh_anim",0,0.0f);
+			
+                             if (gameObject.tag == "Portal") animation.Play ("portal_open_anim",0,0.0f);
+							 else  if (gameObject.tag == "Fractal") animation.Play ("frac_show_anim",0,0.0f);
                                
                             // animation.Play ("cruscarp_skel|swim",0,0.0f);
                             return;
