@@ -73,6 +73,10 @@ public class AudioPeer : MonoBehaviour {
             {
                 _freqBandHighest = _freqBand;
             }
+            if(_freqBand[i]/ _freqBandHighest[i] == 1)
+            {
+                Debug.Log("Audio Broke");
+            }
             _audioBand[i] = (_freqBand[i] / _freqBandHighest[i]);
             _audioBandBuffer[i] = (_freqBand[i] / _freqBandHighest[i]);
         }
