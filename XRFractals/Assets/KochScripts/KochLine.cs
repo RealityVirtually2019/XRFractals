@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(LineRenderer))]
 public class KochLine : KochGenerator {
@@ -9,7 +10,7 @@ public class KochLine : KochGenerator {
     public float _lerpAmount;
     Vector3[] _lerpPostion;
     public float _generateMultiplier;
-
+ public Slider slider1;
     //[Header("Audio")]
     //public AudioPeer _audioPeer;
     //public int _audioBand;
@@ -65,4 +66,60 @@ public class KochLine : KochGenerator {
             updateLine();
         }
     }
+ public void ValueChangeCheck(float myValue)
+    {
+
+        _startGen = new StartGen[Random.Range(1,5)];
+
+         for (int i = 0; i < _startGen.Length; i++)
+        {
+            // Is there a more efficient way to do this? 
+            _startGen[i] = new StartGen();
+            // Random boolean value via 
+            //https://gamedev.stackexchange.com/questions/110332/is-there-a-random-command-for-boolean-variables-in-unity-c
+            Debug.Log(Random.value > 0.5f);
+            _startGen[i].outwards = (Random.value > 0.5f);
+;
+            _startGen[i].scale = Random.Range(1,8);
+        }
+
+        Debug.Log(_startGen.Length +1);
+
+        // int newValue = 10* myValue;
+        
+        // _initiatorSize = (2* myValue);
+        updateLine();
+
+    }
+
+    public void SliderSizeChange(float newSizeValue)
+    {        
+        _initiatorSize = (10* newSizeValue);
+        Debug.Log("Size Changing to : " + _initiatorSize);
+        updateLine();
+
+    }
+
+     public void SliderLerpChange(float newLerpValue)
+    {        
+        _lerpAmount = newLerpValue;
+        Debug.Log("Lerp Changing to : " + _lerpAmount);
+        updateLine();
+
+    }
+
+      public void SliderGenerateMultiplierChange(float newMultiplierValue)
+    {        
+        //Random boolean value
+        _useBezierCurves = Random.value > 0.5f;
+        Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
+        updateLine();
+
+    }
+
+
+
+
+
+
 }
