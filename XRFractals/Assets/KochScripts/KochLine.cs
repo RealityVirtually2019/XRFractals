@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+using System;
 
 [RequireComponent(typeof(LineRenderer))]
 public class KochLine : KochGenerator {
@@ -15,7 +17,9 @@ public class KochLine : KochGenerator {
     public AudioPeer _audioPeer;
     public int _audioBand;
     private AudioPeer masterAudioPeer;
+
     public AudioMixerSnapshot currentFractalSnapshot;
+    public AudioMixerGroup colliderGroup;
 
 	// Use this for initialization
 	void Start () {
@@ -80,28 +84,33 @@ public class KochLine : KochGenerator {
 
         Debug.Log("HELLO!!!!!");
 
-        _startGen = new StartGen[Random.Range(1,5)];
+        _startGen = new StartGen[UnityEngine.Random.Range(1,5)];
 
          for (int i = 0; i < _startGen.Length; i++)
         {
             // TODO : Is there a more efficient way to do this? 
             _startGen[i] = new StartGen();
-            // Random boolean value via 
+            // UnityEngine.Random boolean value via 
             //https://gamedev.stackexchange.com/questions/110332/is-there-a-random-command-for-boolean-variables-in-unity-c
-            Debug.Log(Random.value > 0.5f);
-            _startGen[i].outwards = (Random.value > 0.5f);
+            Debug.Log(UnityEngine.Random.value > 0.5f);
+            _startGen[i].outwards = (UnityEngine.Random.value > 0.5f);
 ;
-            _startGen[i].scale = Random.Range(1,8);
+            _startGen[i].scale = UnityEngine.Random.Range(1,8);
         }
         updateLine();
+
          if (myValue == 0.0) {
             colliderGroup.audioMixer.SetFloat("GrainVolume", 0.0f);
 
 
-        }
-        
+        } else {
+            colliderGroup.audioMixer.SetFloat("GrainVolume", 1.0f);
 
-          colliderGroup.audioMixer.SetFloat("GrainPitch", newPitch);
+        }
+        float newPitch = Convert.ToSingle(UnityEngine.Random.Range(3, 20) * 0.1);
+
+
+        colliderGroup.audioMixer.SetFloat("GrainPitch", newPitch);
 
 
     }
@@ -116,8 +125,13 @@ public class KochLine : KochGenerator {
 
 
         }
+        else
+        {
+            colliderGroup.audioMixer.SetFloat("BassVolume", 1.0f);
 
-            if (newSizeValue > .7) {
+        }
+
+        if (newSizeValue > .7) {
 
 
         colliderGroup.audioMixer.SetFloat("BassPitch", 1.24f);
@@ -147,6 +161,12 @@ public class KochLine : KochGenerator {
 
 
         }
+        else
+        {
+            colliderGroup.audioMixer.SetFloat("SynthVolume", 1.0f);
+
+        }
+    
                if (newLerpValue > .7) {
 
 
@@ -168,12 +188,12 @@ public class KochLine : KochGenerator {
 
       public void SliderGenerateMultiplierChange(float newMultiplierValue)
       {     
-           //Random boolean value
-           _useBezierCurves = Random.value > 0.5f;
+           //UnityEngine.Random boolean value
+           _useBezierCurves = UnityEngine.Random.value > 0.5f;
            Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
            updateLine();
-           float newPitch = Convert.ToSingle(UnityEngine.Random.Range(3,20) * 0.1);
- if (newMultiplierValue == 0.0) {
+
+if (newMultiplierValue == 0.0) {
             colliderGroup.audioMixer.SetFloat("ArpVolume", 0.0f);
 
 

@@ -12,9 +12,7 @@ namespace UnityEngine.XR.iOS
 		public LayerMask collisionLayer = 1 << 10;  //ARKitPlane layer
 		private Animator animation;
 
-
         public AudioMixerSnapshot fractalSnapshot;
-
 
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
@@ -61,7 +59,8 @@ namespace UnityEngine.XR.iOS
 
                     fractalSnapshot.TransitionTo(5);
                 }
-			}
+
+            }
 
 #else
 			if (Input.touchCount > 0 && m_HitTransform != null)
@@ -74,7 +73,7 @@ namespace UnityEngine.XR.iOS
 						x = screenPosition.x,
 						y = screenPosition.y
 					};
-
+         
                     // prioritize reults types
                     ARHitTestResultType[] resultTypes = {
 						//ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingGeometry,
@@ -90,7 +89,7 @@ namespace UnityEngine.XR.iOS
                     {
                         if (HitTestWithResultType (point, resultType))
                         {
-                             if (gameObject.tag == "Portal") animation.Play ("portal_open_anim",0,0.0f);
+                            if (gameObject.tag == "Portal") animation.Play ("portal_open_anim",0,0.0f);
 							 else  if (gameObject.tag == "Fractal") animation.Play ("frac_show_anim",0,0.0f);
                                
                             // animation.Play ("cruscarp_skel|swim",0,0.0f);
