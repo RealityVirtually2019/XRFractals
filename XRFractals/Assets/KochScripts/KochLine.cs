@@ -84,7 +84,7 @@ public class KochLine : KochGenerator {
     {
 
         Debug.Log("HELLO!!!!!");
-        GenNumb = myValue;
+        GenNumb = (int)myValue;
 
         //_startGen = new StartGen[Random.Range(1,5)];
         _startGen = new StartGen[(int)myValue];

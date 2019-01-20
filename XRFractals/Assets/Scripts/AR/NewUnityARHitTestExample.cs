@@ -17,7 +17,7 @@ namespace UnityEngine.XR.iOS
         bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
         {
             List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-            if (hitResults.Count > 0) {
+            if (hitResults.Count > 0 && point.y > 0.2f) {
                 foreach (var hitResult in hitResults) {
                     Debug.Log ("Got hit!");
 
@@ -58,6 +58,7 @@ namespace UnityEngine.XR.iOS
 					m_HitTransform.rotation = hit.transform.rotation;
 
                     fractalSnapshot.TransitionTo(5);
+                   
                 }
 
             }
@@ -73,6 +74,11 @@ namespace UnityEngine.XR.iOS
 						x = screenPosition.x,
 						y = screenPosition.y
 					};
+
+                    Debug.Log("y: " + point.y.ToString());
+                  
+  
+
          
                     // prioritize reults types
                     ARHitTestResultType[] resultTypes = {
@@ -87,7 +93,7 @@ namespace UnityEngine.XR.iOS
 					
                     foreach (ARHitTestResultType resultType in resultTypes)
                     {
-                        if (HitTestWithResultType (point, resultType))
+                        if (HitTestWithResultType (point, resultType) && point.y > 0.2f)
                         {
                             if (gameObject.tag == "Portal") animation.Play ("portal_open_anim",0,0.0f);
 							 else  if (gameObject.tag == "Fractal") animation.Play ("frac_show_anim",0,0.0f);

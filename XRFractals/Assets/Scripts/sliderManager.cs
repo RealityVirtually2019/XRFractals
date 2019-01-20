@@ -7,6 +7,7 @@ public class sliderManager : MonoBehaviour {
 
     public int whichProperty = 0;
 
+    public GameObject[] sliders;
     public string[] propertyNames;
     public Text propertyUIText;
 
@@ -28,6 +29,12 @@ public class sliderManager : MonoBehaviour {
         else whichProperty = propertyNames.Length - 1;
 
         propertyUIText.text = propertyNames[whichProperty];
+
+        for(int i =0; i < propertyNames.Length; i++)
+        {
+            sliders[i].SetActive(false);
+        }
+            sliders[whichProperty].SetActive(true);
     }
 
 
@@ -40,5 +47,12 @@ public class sliderManager : MonoBehaviour {
         else whichProperty = 0; 
 
         propertyUIText.text = propertyNames[whichProperty];
+
+
+        for (int i = 0; i < propertyNames.Length; i++)
+        {
+            sliders[i].SetActive(false);
+        }
+        sliders[whichProperty].SetActive(true);
     }
 }

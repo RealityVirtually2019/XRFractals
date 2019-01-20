@@ -886,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &217047558
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5550,7 +5550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1beddfdb80984619a7598f254688c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ARParent: {fileID: 0}
+  ARParent: {fileID: 1286139108}
 --- !u!1 &850981059
 GameObject:
   m_ObjectHideFlags: 0
@@ -9376,6 +9376,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whichProperty: 0
+  sliders:
+  - {fileID: 1929881152}
+  - {fileID: 1503837030}
+  - {fileID: 288795571}
+  - {fileID: 1201660308}
   propertyNames:
   - Complexity
   - Size
