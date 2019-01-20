@@ -66,14 +66,14 @@ public class KochLine : KochGenerator {
             updateLine();
         }
     }
- public void ValueChangeCheck(float myValue)
+ public void SliderStartGenChange(float myValue)
     {
 
         _startGen = new StartGen[Random.Range(1,5)];
 
          for (int i = 0; i < _startGen.Length; i++)
         {
-            // Is there a more efficient way to do this? 
+            // TODO : Is there a more efficient way to do this? 
             _startGen[i] = new StartGen();
             // Random boolean value via 
             //https://gamedev.stackexchange.com/questions/110332/is-there-a-random-command-for-boolean-variables-in-unity-c
@@ -82,12 +82,6 @@ public class KochLine : KochGenerator {
 ;
             _startGen[i].scale = Random.Range(1,8);
         }
-
-        Debug.Log(_startGen.Length +1);
-
-        // int newValue = 10* myValue;
-        
-        // _initiatorSize = (2* myValue);
         updateLine();
 
     }
