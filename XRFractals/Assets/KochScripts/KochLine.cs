@@ -17,6 +17,7 @@ public class KochLine : KochGenerator {
     public AudioPeer _audioPeer;
     public int _audioBand;
     private AudioPeer masterAudioPeer;
+    private int GenNumb;
 
     public AudioMixerSnapshot currentFractalSnapshot;
     public AudioMixerGroup colliderGroup;
@@ -83,6 +84,7 @@ public class KochLine : KochGenerator {
     {
 
         Debug.Log("HELLO!!!!!");
+        GenNumb = myValue;
 
         //_startGen = new StartGen[Random.Range(1,5)];
         _startGen = new StartGen[(int)myValue];
@@ -94,9 +96,9 @@ public class KochLine : KochGenerator {
             // UnityEngine.Random boolean value via 
             //https://gamedev.stackexchange.com/questions/110332/is-there-a-random-command-for-boolean-variables-in-unity-c
             Debug.Log(UnityEngine.Random.value > 0.5f);
-
+            _startGen[i].outwards = true;
             
-            //_startGen[i].scale = Random.Range(1,8);
+                //_startGen[i].scale = Random.Range(1,8);
             if (i != _startGen.Length)
             {
                 _startGen[i].scale = 1;
@@ -157,12 +159,20 @@ public class KochLine : KochGenerator {
 
         }
 
+
     }
 
      public void SliderLerpChange(float newLerpValue)
     {        
         _lerpAmount = newLerpValue;
         Debug.Log("Lerp Changing to : " + _lerpAmount);
+
+        //_startGen[i].scale = _lerpAmount;
+        for (int i = 0; i < _startGen.Length; i++)
+        {
+            _startGen[i].scale = _lerpAmount;
+        }
+
         updateLine();
 
          if (newLerpValue == 0.0) {
