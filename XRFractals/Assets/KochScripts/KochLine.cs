@@ -21,6 +21,8 @@ public class KochLine : KochGenerator {
         _lineRenderer.enabled = true;
         _lineRenderer.useWorldSpace = false;
         _lineRenderer.loop = true;
+        _lineRenderer.startWidth = 0.05f;
+        _lineRenderer.endWidth = 0.05f;
 
     }
 
