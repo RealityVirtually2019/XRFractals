@@ -11,9 +11,9 @@ public class KochLine : KochGenerator {
     Vector3[] _lerpPostion;
     public float _generateMultiplier;
  public Slider slider1;
-    //[Header("Audio")]
-    //public AudioPeer _audioPeer;
-    //public int _audioBand;
+    [Header("Audio")]
+    public AudioPeer _audioPeer;
+    public int _audioBand;
 
 	// Use this for initialization
 	void Start () {
@@ -43,7 +43,9 @@ public class KochLine : KochGenerator {
         {
             for (int i = 0; i < _position.Length; i++)
             {
-                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _lerpAmount);
+                //OLD Call adding audio now
+                //_lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _lerpAmount);
+                _lerpPostion[i] = Vector3.Lerp(_position[i], _targetPosition[i], _audioPeer._audioBandBuffer[_audioBand]);
             }
             if (_useBezierCurves)
             {
@@ -105,17 +107,10 @@ public class KochLine : KochGenerator {
     }
 
       public void SliderGenerateMultiplierChange(float newMultiplierValue)
-    {        
-        //Random boolean value
-        _useBezierCurves = Random.value > 0.5f;
-        Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
-        updateLine();
-
-    }
-
-
-
-
-
-
+      {     
+           //Random boolean value
+           _useBezierCurves = Random.value > 0.5f;
+           Debug.Log("SliderGenerateMultiplierChange Changing to : " + _useBezierCurves);
+           updateLine();
+      }
 }
