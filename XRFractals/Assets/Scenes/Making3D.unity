@@ -152,15 +152,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 7.19
+      value: 0.093
       objectReference: {fileID: 0}
     - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.705
       objectReference: {fileID: 0}
     - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.58
+      value: 0.079
       objectReference: {fileID: 0}
     - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -695,6 +695,18 @@ Prefab:
         type: 2}
       propertyPath: _generator.m_Curve.Array.data[2].inSlope
       value: 25.000025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2.1913
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2.1913
+      objectReference: {fileID: 0}
+    - target: {fileID: 4655729734062332, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2.1913
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b21b72ec51d4d499965681fe075c7e, type: 2}
